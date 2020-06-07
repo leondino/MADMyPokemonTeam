@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">My Pokemon Team</string>
+    <string name="app_name">My Pokémon Team</string>
+    <string name="pokeball">Pokeball</string>
 </resources>
