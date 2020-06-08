@@ -74,6 +74,7 @@ class TeamFragment : Fragment() {
 
     private fun onPokemonLongClick(pokemon: Pokemon) {
         // Delete the pokemon if long clicked
+        viewModel.deletePokemon(pokemon.dataPokemon!!)
     }
 
    //private fun createItemTouchHelper() : ItemTouchHelper {

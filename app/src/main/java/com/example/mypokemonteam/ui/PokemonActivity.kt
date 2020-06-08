@@ -25,6 +25,7 @@ class PokemonActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pokemon)
         setSupportActionBar(toolbar)
+        supportActionBar?.title = getString(R.string.app_name)
         initViews()
         initViewModel()
         initNavigation()
@@ -42,7 +43,7 @@ class PokemonActivity : AppCompatActivity() {
             pokemon ->
             viewModel.latestPokemonList.clear()
             for(dataPokemon in pokemon)
-                viewModel.getPokemon(dataPokemon.pokemonName, dataPokemon.nickname)
+                viewModel.getPokemon(dataPokemon)
             viewModel.pokemons.value = viewModel.latestPokemonList
         })
 
@@ -74,8 +75,7 @@ class PokemonActivity : AppCompatActivity() {
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             R.id.deleteAll-> {
-                //deleteGames()
-                Toast.makeText(this, viewModel.pokemons.value?.get(0)?.name, Toast.LENGTH_LONG).show()
+                viewModel.deleteAllPokemon()
                 true
             }
             else -> super.onOptionsItemSelected(item)

@@ -40,18 +40,19 @@ class PokemonViewModel(application: Application): AndroidViewModel(application) 
         }
     }
 
-    fun deleteAllPokemon(pokemon: DataPokemon){
+    fun deleteAllPokemon(){
         ioScope.launch {
             pokemonDatabaseRepository.deleteAllPokemon()
         }
     }
 
-    fun getPokemon(pokemonName: String, nickname: String){
-        pokemonRepository.getPokemon(pokemonName).enqueue(object : Callback<Pokemon> {
+    fun getPokemon(pokemon: DataPokemon){
+        pokemonRepository.getPokemon(pokemon.pokemonName).enqueue(object : Callback<Pokemon> {
             override fun onResponse(call: Call<Pokemon>, response: Response<Pokemon>) {
                 if (response.isSuccessful) {
                     latestPokemon.value = response.body()
-                    latestPokemon.value?.nickname = nickname
+                    latestPokemon.value?.nickname = pokemon.nickname
+                    latestPokemon.value?.dataPokemon = pokemon
                     latestPokemonList.add(latestPokemon.value!!)
                 }
                 else error.value = "An error occurred: ${response.errorBody().toString()}"
