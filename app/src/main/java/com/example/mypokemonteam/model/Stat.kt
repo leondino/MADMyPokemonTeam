@@ -1,3 +1,5 @@
+package com.example.mypokemonteam.model
+
 import com.google.gson.annotations.SerializedName
 
 /*

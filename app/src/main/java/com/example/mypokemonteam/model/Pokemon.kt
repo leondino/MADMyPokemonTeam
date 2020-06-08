@@ -1,3 +1,5 @@
+package com.example.mypokemonteam.model
+
 import com.google.gson.annotations.SerializedName
 
 /*
@@ -30,5 +32,6 @@ data class Pokemon (
 	@SerializedName("sprites") val sprites : Sprites,
 	@SerializedName("stats") val stats : List<Stats>,
 	@SerializedName("types") val types : List<Types>,
-	@SerializedName("weight") val weight : Int
+	@SerializedName("weight") val weight : Int,
+	var nickname: String? = null
 )
