@@ -3,8 +3,10 @@ package com.example.mypokemonteam.ui
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -34,6 +36,17 @@ class PokemonActivity : AppCompatActivity() {
 
     private fun initViewModel(){
         viewModel = ViewModelProvider(this).get(PokemonViewModel::class.java)
+
+        viewModel.latestPokemon.observe(this, Observer {
+            // Insert pokemon into database
+            latestPokemon ->
+            viewModel.pokemons.add(latestPokemon)
+        })
+
+        // Observe the error message.
+        viewModel.error.observe(this, Observer {
+            Toast.makeText(this, it, Toast.LENGTH_LONG).show()
+        })
     }
 
     private fun initNavigation() {

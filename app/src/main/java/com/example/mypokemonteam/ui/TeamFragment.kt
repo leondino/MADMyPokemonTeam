@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.browser.customtabs.CustomTabsIntent
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -15,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView
 
 import com.example.mypokemonteam.R
 import com.example.mypokemonteam.model.Pokemon
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_team.*
 
 /**
@@ -25,7 +25,7 @@ class TeamFragment : Fragment() {
 
     private val pokemon = arrayListOf<Pokemon>()
     private lateinit var pokemonAdapter: PokemonAdapter
-    private lateinit var viewmodel: PokemonViewModel
+    private lateinit var viewModel: PokemonViewModel
 
     private val builder = CustomTabsIntent.Builder()
     val customTabsIntent = builder.build()
@@ -56,7 +56,14 @@ class TeamFragment : Fragment() {
     }
 
     fun initViewModel(){
-        viewmodel = ViewModelProvider(activity as AppCompatActivity).get(PokemonViewModel::class.java)
+        viewModel = ViewModelProvider(activity as AppCompatActivity).get(PokemonViewModel::class.java)
+
+        viewModel.pokemons.observe(requireActivity(), Observer{
+                games ->
+            this.pokemon.clear()
+            this.pokemon.addAll(games)
+            pokemonAdapter.notifyDataSetChanged()
+        })
     }
 
     private fun onPokemonClick(pokemonNumber: Int) {
