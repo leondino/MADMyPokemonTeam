@@ -6,7 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.browser.customtabs.CustomTabsIntent
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -23,6 +25,7 @@ class TeamFragment : Fragment() {
 
     private val pokemon = arrayListOf<Pokemon>()
     private lateinit var pokemonAdapter: PokemonAdapter
+    private lateinit var viewmodel: PokemonViewModel
 
     private val builder = CustomTabsIntent.Builder()
     val customTabsIntent = builder.build()
@@ -31,6 +34,7 @@ class TeamFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        initViewModel()
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_team, container, false)
     }
@@ -52,7 +56,7 @@ class TeamFragment : Fragment() {
     }
 
     fun initViewModel(){
-
+        viewmodel = ViewModelProvider(activity as AppCompatActivity).get(PokemonViewModel::class.java)
     }
 
     private fun onPokemonClick(pokemonNumber: Int) {

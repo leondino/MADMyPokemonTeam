@@ -5,6 +5,7 @@ import android.view.Menu
 import android.view.MenuItem
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
@@ -15,6 +16,8 @@ import kotlinx.android.synthetic.main.activity_pokemon.*
 import kotlinx.android.synthetic.main.content_pokemon.*
 
 class PokemonActivity : AppCompatActivity() {
+
+    private lateinit var viewModel: PokemonViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +33,7 @@ class PokemonActivity : AppCompatActivity() {
     }
 
     private fun initViewModel(){
-
+        viewModel = ViewModelProvider(this).get(PokemonViewModel::class.java)
     }
 
     private fun initNavigation() {
