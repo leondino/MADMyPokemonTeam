@@ -40,7 +40,7 @@ class PokemonActivity : AppCompatActivity() {
         viewModel.latestPokemon.observe(this, Observer {
             // Insert pokemon into database
             latestPokemon ->
-            viewModel.pokemons.add(latestPokemon)
+            viewModel.insertPokemon(latestPokemon)
         })
 
         // Observe the error message.
@@ -72,7 +72,6 @@ class PokemonActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.deleteAll-> {
                 //deleteGames()
-                Toast.makeText(this, viewModel.pokemons[0].name + viewModel.pokemons[1].name, Toast.LENGTH_LONG).show()
                 true
             }
             else -> super.onOptionsItemSelected(item)

@@ -58,17 +58,19 @@ class TeamFragment : Fragment() {
     fun initViewModel(){
         viewModel = ViewModelProvider(activity as AppCompatActivity).get(PokemonViewModel::class.java)
 
-        //viewModel.pokemons.observe(requireActivity(), Observer{
-        //        games ->
-        //    this.pokemon.clear()
-        //    this.pokemon.addAll(games)
-        //    pokemonAdapter.notifyDataSetChanged()
-        //})
-        viewModel.latestPokemon.observe(requireActivity(), Observer{
-                this.pokemon.clear()
-                this.pokemon.addAll(viewModel.pokemons)
-                pokemonAdapter.notifyDataSetChanged()
-            })
+        viewModel.pokemons.observe(requireActivity(), Observer{
+                pokemon ->
+            this.pokemon.clear()
+            this.pokemon.addAll(pokemon)
+            pokemonAdapter.notifyDataSetChanged()
+        })
+
+        // Test Version (no database)
+        //viewModel.latestPokemon.observe(requireActivity(), Observer{
+        //        this.pokemon.clear()
+        //        this.pokemon.addAll(viewModel.pokemons)
+        //        pokemonAdapter.notifyDataSetChanged()
+        //    })
     }
 
     private fun onPokemonClick(pokemonNumber: Int) {
