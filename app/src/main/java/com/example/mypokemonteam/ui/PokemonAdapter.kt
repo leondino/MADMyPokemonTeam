@@ -10,7 +10,8 @@ import com.example.mypokemonteam.R
 import com.example.mypokemonteam.model.Pokemon
 import kotlinx.android.synthetic.main.item_pokemon.view.*
 
-class PokemonAdapter(private val pokemon: List<Pokemon>, private val context: Context, private val onClick: (Int) -> Unit)
+class PokemonAdapter(private val pokemon: List<Pokemon>, private val context: Context,
+                     private val onClick: (Int) -> Unit, private val onLongClick: (Pokemon) -> Unit)
 : RecyclerView.Adapter<PokemonAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
@@ -18,6 +19,10 @@ class PokemonAdapter(private val pokemon: List<Pokemon>, private val context: Co
         init {
             itemView.setOnClickListener{
                 onClick(pokemon[adapterPosition].id)
+            }
+            itemView.setOnLongClickListener {
+                onLongClick(pokemon[adapterPosition])
+                true
             }
         }
 
