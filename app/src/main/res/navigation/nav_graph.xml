@@ -8,7 +8,11 @@
         android:id="@+id/teamFragment"
         android:name="com.example.mypokemonteam.ui.TeamFragment"
         android:label="My Pokémon Team"
-        tools:layout="@layout/fragment_team" />
+        tools:layout="@layout/fragment_team" >
+        <action
+            android:id="@+id/action_teamFragment_self"
+            app:destination="@id/teamFragment" />
+    </fragment>
     <fragment
         android:id="@+id/addFragment"
         android:name="com.example.mypokemonteam.ui.AddFragment"

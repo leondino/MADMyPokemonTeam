@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -52,7 +53,6 @@ class TeamFragment : Fragment() {
         rvPokemons.layoutManager = GridLayoutManager(
             requireContext(), 2, RecyclerView.VERTICAL, false)
         rvPokemons.adapter = pokemonAdapter
-        //createItemTouchHelper().attachToRecyclerView(rvPokemons)
     }
 
     fun initViewModel(){
@@ -76,25 +76,5 @@ class TeamFragment : Fragment() {
         // Delete the pokemon if long clicked
         viewModel.deletePokemon(pokemon.dataPokemon!!)
     }
-
-   //private fun createItemTouchHelper() : ItemTouchHelper {
-   //    val callback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT){
-   //        override fun onMove(
-   //            recyclerView: RecyclerView,
-   //            viewHolder: RecyclerView.ViewHolder,
-   //            target: RecyclerView.ViewHolder
-   //        ): Boolean {
-   //            return false
-   //        }
-
-   //        override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-   //            val position =  viewHolder.adapterPosition
-   //            val gameToDelete = pokemon[position]
-   //            //viewModel.deleteGame(gameToDelete)
-   //        }
-
-   //    }
-   //    return ItemTouchHelper(callback)
-   //}
 
 }

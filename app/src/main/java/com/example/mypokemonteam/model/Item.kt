@@ -1,8 +1,5 @@
 package com.example.mypokemonteam.model
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 /*
@@ -16,25 +13,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 For support, please feel free to contact me at https://www.linkedin.com/in/syedabsar */
 
-data class Pokemon (
 
-	@SerializedName("abilities") val abilities : List<Abilities>,
-	@SerializedName("base_experience") val base_experience : Int,
-	@SerializedName("forms") val forms : List<Forms>,
-	@SerializedName("game_indices") val game_indices : List<Game_indices>,
-	@SerializedName("height") val height : Int,
-	@SerializedName("held_items") val held_items : List<Held_items>,
-	@SerializedName("id") val id : Int,
-	@SerializedName("is_default") val is_default : Boolean,
-	@SerializedName("location_area_encounters") val location_area_encounters : String,
-	@SerializedName("moves") val moves : List<Moves>,
+data class Item (
+
 	@SerializedName("name") val name : String,
-	@SerializedName("order") val order : Int,
-	@SerializedName("species") val species : Species,
-	@SerializedName("sprites") val sprites : Sprites,
-	@SerializedName("stats") val stats : List<Stats>,
-	@SerializedName("types") val types : List<Types>,
-	@SerializedName("weight") val weight : Int,
-	var nickname: String? = null,
-	var dataPokemon: DataPokemon? = null
+	@SerializedName("url") val url : String
 )
