@@ -55,11 +55,15 @@ class PokemonViewModel(application: Application): AndroidViewModel(application) 
                     latestPokemon.value?.dataPokemon = pokemon
                     latestPokemonList.add(latestPokemon.value!!)
                 }
-                else error.value = "An error occurred: ${response.errorBody().toString()}"
+                else {
+                    error.value = "An error occurred: ${response.errorBody().toString()}"
+                    deletePokemon(pokemon)
+                }
             }
 
             override fun onFailure(call: Call<Pokemon>, t: Throwable) {
                 error.value = t.message
+                deletePokemon(pokemon)
             }
         })
     }
