@@ -65,8 +65,8 @@ class TeamFragment : Fragment() {
         //    pokemonAdapter.notifyDataSetChanged()
         //})
         viewModel.latestPokemon.observe(requireActivity(), Observer{
-                    latestPokemon ->
-                this.pokemon.add(latestPokemon)
+                this.pokemon.clear()
+                this.pokemon.addAll(viewModel.pokemons)
                 pokemonAdapter.notifyDataSetChanged()
             })
     }
