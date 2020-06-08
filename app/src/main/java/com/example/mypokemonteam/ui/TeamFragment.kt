@@ -7,11 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.example.mypokemonteam.R
+import com.example.mypokemonteam.model.Pokemon
 
 /**
  * A simple [Fragment] subclass.
  */
 class TeamFragment : Fragment() {
+
+    private val pokemon = arrayListOf<Pokemon>()
+    private val pokemonAdapter = PokemonAdapter(pokemon, requireContext())
+    {pokemonNumber -> onPokemonClick(pokemonNumber)}
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -20,5 +25,14 @@ class TeamFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_team, container, false)
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
+
+    private fun onPokemonClick(pokemonNumber: String) {
+
+    }
+
 
 }
