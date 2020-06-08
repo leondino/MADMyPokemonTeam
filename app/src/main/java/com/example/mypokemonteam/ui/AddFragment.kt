@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 
 import com.example.mypokemonteam.R
+import com.example.mypokemonteam.model.DataPokemon
 import kotlinx.android.synthetic.main.fragment_add.*
 
 /**
@@ -39,8 +40,11 @@ class AddFragment : Fragment() {
 
     private fun initViews(){
         btnAdd.setOnClickListener {
-            if (viewModel.isPokemonValid(etPokemon.text.toString(), etNickname.text.toString()))
-                viewModel.getPokemon(etPokemon.text.toString().toLowerCase(), etNickname.text.toString())
+            if (viewModel.isPokemonValid(etPokemon.text.toString(), etNickname.text.toString())) {
+                val dataPokemon = DataPokemon(etPokemon.text.toString().toLowerCase(),
+                    etNickname.text.toString())
+                viewModel.insertPokemon(dataPokemon)
+            }
             else
                 Toast.makeText(requireContext(), getString(R.string.blank_error), Toast.LENGTH_SHORT).show()
         }

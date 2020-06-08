@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.mypokemonteam.database.PokemonDatabaseRepository
+import com.example.mypokemonteam.model.DataPokemon
 import com.example.mypokemonteam.model.Pokemon
 import com.example.mypokemonteam.remotedata.PokemonRepository
 import kotlinx.coroutines.CoroutineScope
@@ -23,21 +24,23 @@ class PokemonViewModel(application: Application): AndroidViewModel(application) 
     val latestPokemon = MutableLiveData<Pokemon>()
     val error = MutableLiveData<String>()
 
-    val pokemons: LiveData<List<Pokemon>> = pokemonDatabaseRepository.getPokemonTeam()
+    val pokemonsData: LiveData<List<DataPokemon>> = pokemonDatabaseRepository.getPokemonTeam()
+    val pokemons = MutableLiveData<List<Pokemon>>()
+    val latestPokemonList =  arrayListOf<Pokemon>()
 
-    fun insertPokemon(pokemon: Pokemon){
+    fun insertPokemon(pokemon: DataPokemon){
         ioScope.launch {
             pokemonDatabaseRepository.insertPokemon(pokemon)
         }
     }
 
-    fun deletePokemon(pokemon: Pokemon){
+    fun deletePokemon(pokemon: DataPokemon){
         ioScope.launch {
             pokemonDatabaseRepository.deletePokemon(pokemon)
         }
     }
 
-    fun deleteAllPokemon(pokemon: Pokemon){
+    fun deleteAllPokemon(pokemon: DataPokemon){
         ioScope.launch {
             pokemonDatabaseRepository.deleteAllPokemon()
         }
@@ -49,6 +52,7 @@ class PokemonViewModel(application: Application): AndroidViewModel(application) 
                 if (response.isSuccessful) {
                     latestPokemon.value = response.body()
                     latestPokemon.value?.nickname = nickname
+                    latestPokemonList.add(latestPokemon.value!!)
                 }
                 else error.value = "An error occurred: ${response.errorBody().toString()}"
             }

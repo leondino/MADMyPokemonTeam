@@ -37,10 +37,12 @@ class PokemonActivity : AppCompatActivity() {
     private fun initViewModel(){
         viewModel = ViewModelProvider(this).get(PokemonViewModel::class.java)
 
-        viewModel.latestPokemon.observe(this, Observer {
-            // Insert pokemon into database
-            latestPokemon ->
-            viewModel.insertPokemon(latestPokemon)
+        viewModel.pokemonsData.observe(this, Observer {
+            // Get data from api based on database pokemon data
+            pokemon ->
+            viewModel.latestPokemonList.clear()
+            for(dataPokemon in pokemon)
+                viewModel.getPokemon(dataPokemon.pokemonName, dataPokemon.nickname)
         })
 
         // Observe the error message.
@@ -72,6 +74,7 @@ class PokemonActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.deleteAll-> {
                 //deleteGames()
+                Toast.makeText(this, viewModel.pokemons.value?.get(0)?.name, Toast.LENGTH_LONG).show()
                 true
             }
             else -> super.onOptionsItemSelected(item)
