@@ -40,7 +40,7 @@ class AddFragment : Fragment() {
     private fun initViews(){
         btnAdd.setOnClickListener {
             if (viewModel.isPokemonValid(etPokemon.text.toString(), etNickname.text.toString()))
-                viewModel.getPokemon(etPokemon.text.toString(), etNickname.text.toString())
+                viewModel.getPokemon(etPokemon.text.toString().toLowerCase(), etNickname.text.toString())
             else
                 Toast.makeText(requireContext(), getString(R.string.blank_error), Toast.LENGTH_SHORT).show()
         }

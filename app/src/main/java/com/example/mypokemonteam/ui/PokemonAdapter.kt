@@ -35,10 +35,10 @@ class PokemonAdapter(private val pokemon: List<Pokemon>, private val context: Co
             // Some pokemon have one type other have 2. This code handles that and sets the right types.
             if (pokemon.types.size == 1)
                 itemView.tvType.text =
-                    context.getString(R.string.pokemon_type_mono, pokemon.types[0])
+                    context.getString(R.string.pokemon_type_mono, pokemon.types[0].type.name)
             else
                 itemView.tvType.text =
-                    context.getString(R.string.pokemon_type_duo, pokemon.types[0], pokemon.types[1])
+                    context.getString(R.string.pokemon_type_duo, pokemon.types[0].type.name, pokemon.types[1].type.name)
 
             // Sets the pokemons pokedex number
             itemView.tvNumber.text = context.getString(R.string.pokemon_number, pokemon.id)

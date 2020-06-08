@@ -52,7 +52,7 @@ class TeamFragment : Fragment() {
         rvPokemons.layoutManager = GridLayoutManager(
             requireContext(), 2, RecyclerView.VERTICAL, false)
         rvPokemons.adapter = pokemonAdapter
-        createItemTouchHelper().attachToRecyclerView(rvPokemons)
+        //createItemTouchHelper().attachToRecyclerView(rvPokemons)
     }
 
     fun initViewModel(){
@@ -81,24 +81,24 @@ class TeamFragment : Fragment() {
         // Delete the pokemon if long clicked
     }
 
-    private fun createItemTouchHelper() : ItemTouchHelper {
-        val callback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT){
-            override fun onMove(
-                recyclerView: RecyclerView,
-                viewHolder: RecyclerView.ViewHolder,
-                target: RecyclerView.ViewHolder
-            ): Boolean {
-                return false
-            }
+   //private fun createItemTouchHelper() : ItemTouchHelper {
+   //    val callback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT){
+   //        override fun onMove(
+   //            recyclerView: RecyclerView,
+   //            viewHolder: RecyclerView.ViewHolder,
+   //            target: RecyclerView.ViewHolder
+   //        ): Boolean {
+   //            return false
+   //        }
 
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val position =  viewHolder.adapterPosition
-                val gameToDelete = pokemon[position]
-                //viewModel.deleteGame(gameToDelete)
-            }
+   //        override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+   //            val position =  viewHolder.adapterPosition
+   //            val gameToDelete = pokemon[position]
+   //            //viewModel.deleteGame(gameToDelete)
+   //        }
 
-        }
-        return ItemTouchHelper(callback)
-    }
+   //    }
+   //    return ItemTouchHelper(callback)
+   //}
 
 }
