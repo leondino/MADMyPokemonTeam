@@ -17,7 +17,8 @@ class PokemonViewModel(application: Application): AndroidViewModel(application) 
     val latestPokemon = MutableLiveData<Pokemon>()
     val error = MutableLiveData<String>()
 
-    val pokemons: ArrayList<Pokemon> = arrayListOf()
+    val pokemons = arrayListOf<Pokemon>()
+    //val pokemons: LiveData<List<Pokemon>> = arrayListOf<Pokemon>()
 
     fun getPokemon(pokemonName: String){
         pokemonRepository.getPokemon(pokemonName).enqueue(object : Callback<Pokemon> {
