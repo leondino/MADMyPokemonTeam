@@ -43,6 +43,7 @@ class PokemonActivity : AppCompatActivity() {
             viewModel.latestPokemonList.clear()
             for(dataPokemon in pokemon)
                 viewModel.getPokemon(dataPokemon.pokemonName, dataPokemon.nickname)
+            viewModel.pokemons.value = viewModel.latestPokemonList
         })
 
         // Observe the error message.

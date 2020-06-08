@@ -64,13 +64,6 @@ class TeamFragment : Fragment() {
             this.pokemon.addAll(pokemon)
             pokemonAdapter.notifyDataSetChanged()
         })
-
-        // Test Version (no database)
-        //viewModel.latestPokemon.observe(requireActivity(), Observer{
-        //        this.pokemon.clear()
-        //        this.pokemon.addAll(viewModel.pokemons)
-        //        pokemonAdapter.notifyDataSetChanged()
-        //    })
     }
 
     private fun onPokemonClick(pokemonNumber: Int) {
