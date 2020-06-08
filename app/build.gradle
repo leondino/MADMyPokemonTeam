@@ -76,4 +76,7 @@ dependencies {
     kapt "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-runtime:$room_version"
 
+    //AndroidX browser
+    implementation 'androidx.browser:browser:1.2.0'
+
 }
