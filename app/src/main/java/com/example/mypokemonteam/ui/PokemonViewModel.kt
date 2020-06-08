@@ -20,10 +20,13 @@ class PokemonViewModel(application: Application): AndroidViewModel(application) 
     val pokemons = arrayListOf<Pokemon>()
     //val pokemons: LiveData<List<Pokemon>> = arrayListOf<Pokemon>()
 
-    fun getPokemon(pokemonName: String){
+    fun getPokemon(pokemonName: String, nickname: String){
         pokemonRepository.getPokemon(pokemonName).enqueue(object : Callback<Pokemon> {
             override fun onResponse(call: Call<Pokemon>, response: Response<Pokemon>) {
-                if (response.isSuccessful) latestPokemon.value = response.body()
+                if (response.isSuccessful) {
+                    latestPokemon.value = response.body()
+                    latestPokemon.value?.nickname = nickname
+                }
                 else error.value = "An error occurred: ${response.errorBody().toString()}"
             }
 
@@ -31,6 +34,10 @@ class PokemonViewModel(application: Application): AndroidViewModel(application) 
                 error.value = t.message
             }
         })
+    }
+
+    fun isPokemonValid(pokemonName: String, nickname: String): Boolean{
+        return !(pokemonName.isBlank() || nickname.isBlank())
     }
 
 }

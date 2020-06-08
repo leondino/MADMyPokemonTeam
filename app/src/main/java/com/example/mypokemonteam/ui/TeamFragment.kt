@@ -34,17 +34,17 @@ class TeamFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Initialise adapter
+        pokemonAdapter = PokemonAdapter(pokemon, requireContext(),
+            onClick = {pokemonNumber -> onPokemonClick(pokemonNumber)},
+            onLongClick = { pokemon -> onPokemonLongClick(pokemon)})
+
         initViewModel()
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_team, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        pokemonAdapter = PokemonAdapter(pokemon, requireContext(),
-            onClick = {pokemonNumber -> onPokemonClick(pokemonNumber)},
-            onLongClick = { pokemon -> onPokemonLongClick(pokemon)})
-
         initViews()
     }
 
