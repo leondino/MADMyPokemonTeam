@@ -18,4 +18,8 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="explanation">Fill in what Pokémon you want to add to you team and give it a nickname.</string>
+    <string name="pokemon">Pokémon</string>
+    <string name="nickname">Nickname</string>
+    <string name="add_button">Add this Pokémon to the team!</string>
 </resources>
