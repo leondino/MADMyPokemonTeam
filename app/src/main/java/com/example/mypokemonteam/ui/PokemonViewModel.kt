@@ -68,4 +68,8 @@ class PokemonViewModel(application: Application): AndroidViewModel(application) 
         return !(pokemonName.isBlank() || nickname.isBlank())
     }
 
+    fun isPartyFull(): Boolean{
+        return (pokemons.value?.size!! >= 6)
+    }
+
 }

@@ -41,9 +41,15 @@ class AddFragment : Fragment() {
     private fun initViews(){
         btnAdd.setOnClickListener {
             if (viewModel.isPokemonValid(etPokemon.text.toString(), etNickname.text.toString())) {
-                val dataPokemon = DataPokemon(etPokemon.text.toString().toLowerCase(),
-                    etNickname.text.toString())
-                viewModel.insertPokemon(dataPokemon)
+                if (!viewModel.isPartyFull()) {
+                    val dataPokemon = DataPokemon(
+                        etPokemon.text.toString().toLowerCase(),
+                        etNickname.text.toString()
+                    )
+                    viewModel.insertPokemon(dataPokemon)
+                }
+                else
+                    Toast.makeText(requireContext(), getString(R.string.full_error) , Toast.LENGTH_LONG).show()
             }
             else
                 Toast.makeText(requireContext(), getString(R.string.blank_error), Toast.LENGTH_SHORT).show()

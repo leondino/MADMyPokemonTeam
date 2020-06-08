@@ -7,6 +7,8 @@
     <string name="pokemon_number">Pokedex Number: #%03d</string>
     <string name="serebii_url">https://www.serebii.net/pokedex-sm/%03d.shtml</string>
     <string name="blank_error">Please fill in both the Pokémon and Nickname fields!</string>
+    <string name="full_error">Your team is full! Please delete a member by pressing it a couple of seconds
+        or delete your whole team.</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
