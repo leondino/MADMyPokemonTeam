@@ -1,10 +1,10 @@
 package com.example.mypokemonteam.ui
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -13,7 +13,6 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.example.mypokemonteam.R
-
 import kotlinx.android.synthetic.main.activity_pokemon.*
 import kotlinx.android.synthetic.main.content_pokemon.*
 
@@ -27,13 +26,16 @@ class PokemonActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         // Set title because of splash screen not refreshing toolbar name.
         supportActionBar?.title = getString(R.string.app_name)
-        initViews()
         initViewModel()
         initNavigation()
+        initViews()
     }
 
     private fun initViews(){
-
+        // Reload fragment on start to load data received from database
+        Handler().postDelayed({
+            findNavController(R.id.navHostFragment).navigate(R.id.action_teamFragment_self)
+        }, RELOAD_SPEED_MS)
     }
 
     private fun initViewModel(){
@@ -85,6 +87,10 @@ class PokemonActivity : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    companion object{
+        const val RELOAD_SPEED_MS: Long = 2000
     }
 
 }

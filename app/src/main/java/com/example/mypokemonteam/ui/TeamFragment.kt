@@ -2,6 +2,7 @@ package com.example.mypokemonteam.ui
 
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +13,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 
 import com.example.mypokemonteam.R
@@ -55,6 +55,10 @@ class TeamFragment : Fragment() {
         rvPokemons.layoutManager = GridLayoutManager(
             requireContext(), 2, RecyclerView.VERTICAL, false)
         rvPokemons.adapter = pokemonAdapter
+        //Handler().postDelayed({
+        //    // Start the PokemonActivity (Main Activity with Fragments) after given seconds.
+        //    findNavController().navigate(R.id.action_teamFragment_self)
+        //}, 2000)
     }
 
     fun initViewModel(){
@@ -78,6 +82,11 @@ class TeamFragment : Fragment() {
     private fun onPokemonLongClick(pokemon: Pokemon) {
         // Delete the pokemon if long clicked
         viewModel.deletePokemon(pokemon.dataPokemon!!)
+
+        Handler().postDelayed({
+            // Reloads the fragment to show changes
+            findNavController().navigate(R.id.action_teamFragment_self)
+        }, PokemonActivity.RELOAD_SPEED_MS)
     }
 
 }
