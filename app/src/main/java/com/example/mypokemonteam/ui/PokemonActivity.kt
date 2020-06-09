@@ -25,6 +25,7 @@ class PokemonActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pokemon)
         setSupportActionBar(toolbar)
+        // Set title because of splash screen not refreshing toolbar name.
         supportActionBar?.title = getString(R.string.app_name)
         initViews()
         initViewModel()
@@ -38,8 +39,9 @@ class PokemonActivity : AppCompatActivity() {
     private fun initViewModel(){
         viewModel = ViewModelProvider(this).get(PokemonViewModel::class.java)
 
+        // Observing the pokemonsData list which updates with the database
         viewModel.pokemonsData.observe(this, Observer {
-            // Get data from api based on database pokemon data
+            // Get data from api based on database pokemon data.
             pokemon ->
             viewModel.latestPokemonList.clear()
             for(dataPokemon in pokemon)
@@ -54,10 +56,13 @@ class PokemonActivity : AppCompatActivity() {
     }
 
     private fun initNavigation() {
+
         val navController = findNavController(R.id.navHostFragment)
 
+        // Connecting the navigation controller to the bottom menu.
         NavigationUI.setupWithNavController(navView, navController)
 
+        // Connecting the navigation controller with the toolbar
         val appBarConfiguration = AppBarConfiguration(navController.graph)
         toolbar.setupWithNavController(navController, appBarConfiguration)
     }

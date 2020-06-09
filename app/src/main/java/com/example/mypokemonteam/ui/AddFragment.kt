@@ -39,8 +39,11 @@ class AddFragment : Fragment() {
     }
 
     private fun initViews(){
+        // Clicking this button will update the database with the given variables
         btnAdd.setOnClickListener {
+            // Check if fields are filled in
             if (viewModel.isPokemonValid(etPokemon.text.toString(), etNickname.text.toString())) {
+                // Check if party/team is full (max 6)
                 if (!viewModel.isPartyFull()) {
                     val dataPokemon = DataPokemon(
                         etPokemon.text.toString().toLowerCase(),

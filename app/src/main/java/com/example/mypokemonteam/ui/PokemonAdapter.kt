@@ -16,6 +16,11 @@ class PokemonAdapter(private val pokemon: List<Pokemon>, private val context: Co
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
+        /* Sets onClick listeners for the items in the recyclerview
+        * using the Lambda expressions in the parameters of this class.
+        * The first one is for clicking and opening a website.
+        * The second one is for long clicking (holding) and deleting the item.
+        */
         init {
             itemView.setOnClickListener{
                 onClick(pokemon[adapterPosition].id)

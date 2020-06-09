@@ -8,10 +8,13 @@ import com.example.mypokemonteam.R
 
 class SplashActivity : AppCompatActivity() {
 
+    private var splashScreenLengthSeconds: Long = 2
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         Handler().postDelayed({
+            // Start the PokemonActivity (Main Activity with Fragments) after given seconds.
             startActivity(
                 Intent(
                     this@SplashActivity,
@@ -19,6 +22,6 @@ class SplashActivity : AppCompatActivity() {
                 )
             )
             finish()
-        }, 2000)
+        }, splashScreenLengthSeconds * 1000)
     }
 }

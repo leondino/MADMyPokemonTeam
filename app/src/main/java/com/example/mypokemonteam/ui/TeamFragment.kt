@@ -28,6 +28,7 @@ class TeamFragment : Fragment() {
     private lateinit var pokemonAdapter: PokemonAdapter
     private lateinit var viewModel: PokemonViewModel
 
+    // Custom Chrome tabs for Serebii.net
     private val builder = CustomTabsIntent.Builder()
     val customTabsIntent = builder.build()
 
@@ -50,6 +51,7 @@ class TeamFragment : Fragment() {
     }
 
     fun initViews(){
+        // Initialise recyclerview
         rvPokemons.layoutManager = GridLayoutManager(
             requireContext(), 2, RecyclerView.VERTICAL, false)
         rvPokemons.adapter = pokemonAdapter
@@ -58,6 +60,7 @@ class TeamFragment : Fragment() {
     fun initViewModel(){
         viewModel = ViewModelProvider(activity as AppCompatActivity).get(PokemonViewModel::class.java)
 
+        // Observes the pokemons list and updates the pokemon list and recyclerview of this fragment accordingly.
         viewModel.pokemons.observe(requireActivity(), Observer{
                 pokemon ->
             this.pokemon.clear()
@@ -67,7 +70,7 @@ class TeamFragment : Fragment() {
     }
 
     private fun onPokemonClick(pokemonNumber: Int) {
-        // Open Serebii page with pokemons pokedex number.
+        // Open Serebii.net page with pokemons pokedex number.
         customTabsIntent.launchUrl(requireContext(),
             Uri.parse(getString(R.string.serebii_url, pokemonNumber)))
     }

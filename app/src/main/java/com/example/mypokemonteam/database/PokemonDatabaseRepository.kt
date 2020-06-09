@@ -13,18 +13,22 @@ class PokemonDatabaseRepository(context: Context) {
         pokemonDao = pokemonRoomDatabase!!.pokemonDao()
     }
 
+    // Gets LiveData list of all data pokemon in database
     fun getPokemonTeam(): LiveData<List<DataPokemon>> {
         return pokemonDao.getPokemonTeam()
     }
 
+    // Inserts the data pokemon in the database and updates it
     suspend fun insertPokemon(pokemon: DataPokemon){
         return pokemonDao.insertPokemon(pokemon)
     }
 
+    // Deletes the data pokemon in the database and updates it
     suspend fun deletePokemon(pokemon: DataPokemon){
         return pokemonDao.deletePokemon(pokemon)
     }
 
+    // Deletes all the data pokemon in the database and updates it
     suspend fun deleteAllPokemon(){
         return pokemonDao.deleteAllPokemon()
     }
