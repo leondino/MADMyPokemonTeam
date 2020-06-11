@@ -55,10 +55,6 @@ class TeamFragment : Fragment() {
         rvPokemons.layoutManager = GridLayoutManager(
             requireContext(), 2, RecyclerView.VERTICAL, false)
         rvPokemons.adapter = pokemonAdapter
-        //Handler().postDelayed({
-        //    // Start the PokemonActivity (Main Activity with Fragments) after given seconds.
-        //    findNavController().navigate(R.id.action_teamFragment_self)
-        //}, 2000)
     }
 
     fun initViewModel(){
